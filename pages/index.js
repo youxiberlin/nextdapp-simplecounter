@@ -1,8 +1,17 @@
 import { bind } from "nd"
 
 
-const Counter = bind(({ count, set }) => 
-  <span onClick={() => set(count +1, "count")}>{count}</span>, ["count"])
+const Counter = bind(({ count, init }) => {
+    const fn = init();
+    return (
+      <span onClick={() => fn.add(1)}>{count}</span>
+    )
+  }, 
+  [
+    "count",
+    "add"
+  ]
+)
 
 export default bind(
   () => (
