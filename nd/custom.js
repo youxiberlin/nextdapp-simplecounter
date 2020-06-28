@@ -1,3 +1,3 @@
-export const add = ({ set, val, props}) =>
-  set(props.count + val, "count")
-add.props = ["count"]
+export const add = ({ set, val: { num, target }, props}) =>
+  set(props[target] + num, target)
+// add.props = ["count"]
