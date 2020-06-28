@@ -1,10 +1,12 @@
 import { bind } from "nd"
-
+import { add } from "nd/custom";
 
 const Counter = bind(({ count, init }) => {
     const fn = init();
     return (
-      <span onClick={() => fn.add(1)}>{count}</span>
+      <div>
+        <span onClick={() => fn.add(1)}>counter1: {count}</span>
+      </div>
     )
   }, 
   [
@@ -13,10 +15,25 @@ const Counter = bind(({ count, init }) => {
   ]
 )
 
+const Counter2 = bind(({ count2, init }) => {
+  const fn = init();
+  return (
+    <div>
+      <span onClick={() => fn.add(2)}>counter2: {count2}</span>
+    </div>
+  )
+}, 
+[
+  "count2",
+  "add"
+]
+)
+
 export default bind(
   () => (
     <div >
-      add count: <Counter />
+      <Counter />
+      <Counter2 />
     </div>
   )
 )
